@@ -11,11 +11,11 @@ sudo service nginx start
 # Allow incoming traffic for the Nginx HTTP service
 sudo ufw allow 'Nginx HTTP'
 
-# Creating an index.html page
-echo "Hello World!" | sudo tee /var/www/html/index.html
+# Create  new index
+echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
 
-# Redirection to a youtube video
-sudo sed -i '24i\       rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-enabled/default
+# redirecton to  youtube video
+sudo sed -i '24i\       rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
 
 # Restart nginx
 sudo service nginx restart
