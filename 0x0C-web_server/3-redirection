@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Script that install Nginx on the server web-01
+
+# Update the package and intall
+sudo apt-get update
+sudo apt-get -y install nginx
+
+# Start nginx
+sudo service nginx start 
+
+# Allow incoming traffic for the Nginx HTTP service
+sudo ufw allow 'Nginx HTTP'
+
+# Creating an index.html page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+i
+# Redirection to a youtube video
+sudo sed -i '24i\       rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# Restart nginx
+sudo service nginx restart
