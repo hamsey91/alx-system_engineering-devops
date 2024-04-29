@@ -13,7 +13,8 @@ if __name__ == "__main__":
 
     req_session = requests.Session()
     emp_id = sys.argv[1]
-    url_id = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(emp_id)
+    url_id = 'https://jsonplaceholder.typicode.com/users/{}/todos'
+    .format(emp_id)
     nameURL = 'https://jsonplaceholder.typicode.com/users/{}'.format(emp_id)
     emp = req_session.get(url_id)
     emp_name = req_session.get(nameURL)
