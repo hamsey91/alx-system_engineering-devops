@@ -19,7 +19,7 @@ if __name__ == "__main__":
     emp = req_session.get(url_id)
     emp_name = req_session.get(nameURL)
     req_emp = emp.json()
-    name = emp_name.json()['name']
+    Uname = emp_name.json()['username']
 
     Tasks = 0
     for completed_tasks in req_emp:
@@ -30,4 +30,4 @@ if __name__ == "__main__":
     with open(fileCSV, "w", newline='') as csvfile:
         write = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_ALL)
         for i in req_emp:
-            write.writerow([emp_id, name, i.get('completed'), i.get('title')])
+            write.writerow([emp_id, Uname, i.get('completed'), i.get('title')])
