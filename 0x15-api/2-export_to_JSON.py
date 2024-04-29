@@ -21,18 +21,18 @@ if __name__ == "__main__":
     req_emp = emp.json()
     Uname = emp_name.json()['username']
 
-    Tasks = 0
-    updateUser = {}
+    Tasks = []
+    usr_update = {}
 
-    for all_Emp in req_emp:
+    for Employees in req_emp:
         Tasks.append(
             {
-                "task": all_Emp.get('title'),
-                "completed": all_Emp.get('completed'),
+                "task": Employees.get('title'),
+                "completed": Employees.get('completed'),
                 "username": Uname,
             })
+    usr_update[emp_id] = Tasks
 
-    updateUser[emp_id] = Tasks
     jsonFile = emp_id + ".json"
     with open(jsonFile, 'w') as f:
-        json.dump(updateUser, f)
+        json.dump(usr_update, f)
