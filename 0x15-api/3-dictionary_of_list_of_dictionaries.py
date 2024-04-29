@@ -13,9 +13,9 @@ import sys
 if __name__ == "__main__":
 
     Users_req = requests.get("https://jsonplaceholder.typicode.com/users")
-    Users_json = users.json()
+    Users_json = Users_req.json()
     Todos_req = requests.get('https://jsonplaceholder.typicode.com/todos')
-    Todos_json = todos.json()
+    Todos_json = Todos_req.json()
     All_Todos = {}
 
     for User in Users_json:
@@ -23,8 +23,8 @@ if __name__ == "__main__":
         for Task in Todos_json:
             if Task.get('userId') == User.get('id'):
                 Dic_Tasks = {"username": User.get('username'),
-                            "task": Task.get('title'),
-                            "completed": Task.get('completed')}
+                             "task": Task.get('title'),
+                             "completed": Task.get('completed')}
                 List_Tasks.append(Dic_Tasks)
         All_Todos[User.get('id')] = List_Tasks
 
