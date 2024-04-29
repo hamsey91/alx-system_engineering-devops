@@ -5,7 +5,6 @@ returns info about TODO list progress,using requests module.
 """
 
 import requests
-import json
 import sys
 
 
