@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Bash script that install and configure HAProxy on lb-01 server
+
+# Install  haproxy on lb-01 server.
+sudo apt-get -y update
+apt-get -y install haproxy
+
+# Make change on configuration file
+sudo cp /etc/haproxy/haproxy.cfg haproxy_default.backup
+
+server_config=\
+"
+defaults
+  mode http
+  timeout client 15s
+  timeout connect 10s
+  timeout server 15s
+  timeout http-request 10s
+
+frontend hamsey-frontend
+    bind *:80
+    default_backend hamsey-backend
+
+backend hamsey-backend
+    balance roundrobin
+    server 462434-web-01 18.204.11.128:80 check
+    server 462434-web-02 100.25.152.68:80 check
+"
+echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
+
+# Script to enable HAproxy
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+
+# Check the HAproxy config
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+
+# Restart the HAproxy service
+sudo service haproxy restart
