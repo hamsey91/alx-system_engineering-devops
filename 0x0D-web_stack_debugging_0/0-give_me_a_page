@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Run on the container and to return a page containing Hello Holberton
-
-service apache2 start
